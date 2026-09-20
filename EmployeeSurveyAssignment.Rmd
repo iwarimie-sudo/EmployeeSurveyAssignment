@@ -1,0 +1,145 @@
+---
+title: "EmployeeSurveyAssignment"
+author: "Ezekiel Iwarimie"
+date: "9/20/2026"
+output: html_document
+---
+
+# Employee Survey Data
+
+## 1. Load and Explore the Data
+
+```{r}
+
+# Load the employee survey Data
+Survey_Data <- read.csv("~/Downloads/Typical_Employee_Survey_Data.csv")
+
+# Assign column names
+names(Survey_Data) <- c("Age", "Gender", "JobSatisfaction", "ImportantChar", 
+                        "YearsWorked", "PromotionLikely", "DecisionMaking", 
+                        "BudgetDecision", "OrgPride", "TurnDownJob", 
+                        "WorkplaceRelation")
+
+# Explore Data
+head(Survey_Data)
+str(Survey_Data)
+dim(Survey_Data)
+```
+
+## 2. Five-Point Summary and Boxplots
+
+### Age
+
+```{r}
+# 5-point summary and boxplots
+
+summary(Survey_Data$Age)
+boxplot(Survey_Data$Age,
+        main = "Boxplot of Age",
+        ylab = "Age")
+```
+
+### Years Worked
+
+```{r}
+summary(Survey_Data$YearsWorked)
+boxplot(Survey_Data$YearsWorked,
+        main = "Boxplot of Years Worked",
+        ylab = "Years Worked")
+```
+
+### 3. Convert Variables to Factors
+
+```{r}
+# Convert variables to factors
+Survey_Data$Gender <- as.factor(Survey_Data$Gender)
+Survey_Data$JobSatisfaction <- as.factor(Survey_Data$JobSatisfaction)
+Survey_Data$ImportantChar <- as.factor(Survey_Data$ImportantChar)
+Survey_Data$PromotionLikely <- as.factor(Survey_Data$PromotionLikely)
+Survey_Data$DecisionMaking <- as.factor(Survey_Data$DecisionMaking)
+Survey_Data$BudgetDecision <- as.factor(Survey_Data$BudgetDecision)
+Survey_Data$OrgPride <- as.factor(Survey_Data$OrgPride)
+Survey_Data$TurnDownJob <- as.factor(Survey_Data$TurnDownJob)
+Survey_Data$WorkplaceRelation <- as.factor(Survey_Data$WorkplaceRelation)
+
+# Verify the data
+str(Survey_Data)
+```
+
+### 4. Visualizations
+
+```{r}
+# Histogram for Age
+hist(Survey_Data$Age, 
+     main = "Distribution of Age", 
+     xlab = "Age", 
+     ylab = "Frequency")
+
+# Barplots for Variables
+barplot(table(Survey_Data$Gender),
+        main = "Gender",
+        xlab = "Gender",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$JobSatisfaction),
+        main = "Job Satisfaction",
+        xlab = "Job Satisfaction",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$ImportantChar),
+        main = "Most Important Job Characteristic",
+        xlab = "Characteristic",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$PromotionLikely),
+        main = "Likelihood of Promotion",
+        xlab = "Response",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$DecisionMaking),
+        main = "Decision Making",
+        xlab = "Response",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$BudgetDecision),
+        main = "Budget Decision",
+        xlab = "Response",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$OrgPride),
+        main = "Organizational Pride",
+        xlab = "Response",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$TurnDownJob),
+        main = "Would Turn Down Another Job for More Pay",
+        xlab = "Response",
+        ylab = "Frequency")
+
+barplot(table(Survey_Data$WorkplaceRelation),
+        main = "Workplace Relations",
+        xlab = "Response",
+        ylab = "Frequency")
+
+# Scatter Plots for Relationships
+
+# Age vs. Years Worked
+plot(Survey_Data$Age, as.numeric(Survey_Data$YearsWorked),
+     main = "Age vs. Years Worked",
+     xlab = "Age",
+     ylab = "Years Worked")
+
+# Age vs. Job Satisfaction
+plot(Survey_Data$Age,
+     as.numeric(Survey_Data$JobSatisfaction),
+     main = "Age vs. Job Satisfaction",
+     xlab = "Age",
+     ylab = "Job Satisfaction")
+
+# Years Worked vs. Promotion Likelihood
+plot(Survey_Data$YearsWorked,
+     as.numeric(Survey_Data$PromotionLikely),
+     main = "Years Worked vs. Promotion Likelihood",
+     xlab = "Years Worked",
+     ylab = "Promotion Likelihood")
+```
